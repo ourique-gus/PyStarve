@@ -4,6 +4,9 @@ from main.screen import screen
 from main.controls import controls
 from main.player import player
 from main.cycle import cycle
+from main.light import light
+from main.camera import camera
+from main.tile import tile
 
 
 class game():
@@ -12,10 +15,8 @@ class game():
         self.is_running=False
         
         self.start_screen(1366, 768)
-        self.start_clock(30)
+        self.start_clock(60)
         self.start_game()
-        
-        
         
         
     def start_screen(self,width, height):
@@ -30,15 +31,28 @@ class game():
     
     def start_game(self):
         self.is_running=True
+        self.tick=0
         
         self.controls=controls(self)
-        self.player=player(self,10,10,10,10)
-        self.cycle=cycle(self,60)
+        self.player=player(self,10,10,50,50)
+        self.player2=player(self,10,10,250,50)
+        self.cycle=cycle(self,180)
         
+        self.camera=camera(self,0,0)
+        
+        self.tiles=[]
         self.entities=[]
+        self.lights=[]
         
-        self.entities.append(self.cycle)
+        for i in range(-20,20):
+            for j in range(-20,20):
+                self.tiles.append( tile(self, 100*i,100*j,(0+(20+i)*5,0+(20+j)*5,0)) )
+                
         self.entities.append(self.player)
+        
+        self.lights.append(light(self,500,500,100,100))
+        self.lights.append(light(self,700,500,100,100))
+        self.lights.append(light(self,500,700,100,100))
         
         while self.is_running:
             print(self.clock. get_fps())
@@ -49,13 +63,22 @@ class game():
             for ent in self.entities:
                 if hasattr(ent,"update") and hasattr(ent,"is_updating") and ent.is_updating:
                     ent.update()
-    
+                    
+            self.cycle.update()
+                    
+            for ent in self.lights:
+                if hasattr(ent,"update") and hasattr(ent,"is_updating") and ent.is_updating:
+                    ent.update()
+                    
+            self.camera.update()
     
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.is_running = False
                                    
             self.screen.update()
+            
+            self.tick+=1
                     
                 
 

@@ -24,9 +24,14 @@ class player():
         if r > 0:
             dx/=r
             dy/=r
+            print(dx, dy)
             self.x+=self.speed*dx
             self.y+=self.speed*dy
         
     def draw(self):
-        self.game.screen.screen.blit(self.sprite, (self.x-self.size[0]/2,self.y-self.size[1]/2))
+        self.game.screen.screen.blit(self.sprite,
+                    (self.x-self.size[0]/2-(self.game.camera.x-self.game.screen.width/2),
+                     self.y-self.size[1]/2-(self.game.camera.y-self.game.screen.height/2)
+                    )
+                )
         

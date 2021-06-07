@@ -22,11 +22,8 @@ class cycle():
         if self.current_time >= self.duration:
             self.current_time=0
         self.alpha=int(255*self.current_time/self.duration)
+        #self.alpha=255
         self.sprite.set_alpha(self.alpha)
-        
-        #for i in range(0,50,1)[::-1]:
-        #    pygame.draw.circle(self.sprite,(0,0,0,255*i/50.), (self.game.player.x,self.game.player.y),4*i)
-        #self.sprite.blit(self.hole,(self.game.player.x-50,self.game.player.y-50), special_flags=pygame.BLEND_RGBA_SUB)
         
         
         
