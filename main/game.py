@@ -41,6 +41,7 @@ class game():
         self.entities.append(self.player)
         
         while self.is_running:
+            print(self.clock. get_fps())
             self.clock.tick(self.tps)
     
             self.controls.get_keys()

@@ -12,7 +12,8 @@ class cycle():
         self.sprite=pygame.Surface((self.game.screen.width, self.game.screen.height), pygame.SRCALPHA)
         self.hole=pygame.Surface((100,100), pygame.SRCALPHA)
         self.sprite.fill((0,0,0))
-        self.hole.fill((0,0,0,255))
+        self.hole.fill((0,0,0,0))
+        #pygame.draw.circle(self.hole,(255,0,0,255),(50,50),50)
         self.zorder=1
         
     def update(self):
@@ -23,7 +24,9 @@ class cycle():
         self.alpha=int(255*self.current_time/self.duration)
         self.sprite.set_alpha(self.alpha)
         
-        self.sprite.blit(self.hole,(self.game.player.x-50,self.game.player.y-50), special_flags=pygame.BLEND_RGBA_SUB)
+        #for i in range(0,50,1)[::-1]:
+        #    pygame.draw.circle(self.sprite,(0,0,0,255*i/50.), (self.game.player.x,self.game.player.y),4*i)
+        #self.sprite.blit(self.hole,(self.game.player.x-50,self.game.player.y-50), special_flags=pygame.BLEND_RGBA_SUB)
         
         
         

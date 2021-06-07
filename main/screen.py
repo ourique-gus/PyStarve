@@ -18,7 +18,6 @@ class screen():
         sorted_entities=[self.game.entities[index] for index in sorted_index]
         
         for ent in sorted_entities:
-            print(ent.is_hidden)
             if hasattr(ent,"draw") and (not hasattr(ent,"is_hidden") or not ent.is_hidden):
                 ent.draw()
     
