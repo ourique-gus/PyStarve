@@ -22,7 +22,7 @@ class cycle():
         if self.current_time >= self.duration:
             self.current_time=0
         self.alpha=int(255*self.current_time/self.duration)
-        #self.alpha=255
+        self.alpha=100
         self.sprite.set_alpha(self.alpha)
         
         

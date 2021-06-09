@@ -7,6 +7,7 @@ from main.cycle import cycle
 from main.light import light
 from main.camera import camera
 from main.tile import tile
+from main.tile_manager import tile_manager
 
 
 class game():
@@ -32,11 +33,14 @@ class game():
     def start_game(self):
         self.is_running=True
         self.tick=0
+
+        self.tile_manager=tile_manager(self)
+        self.tile_manager.start()
         
         self.controls=controls(self)
-        self.player=player(self,10,10,50,50)
-        self.player2=player(self,10,10,250,50)
+        self.player=player(self,20,20,50,50)
         self.cycle=cycle(self,180)
+        
         
         self.camera=camera(self,0,0)
         
@@ -46,7 +50,11 @@ class game():
         
         for i in range(-20,20):
             for j in range(-20,20):
-                self.tiles.append( tile(self, 100*i,100*j,(0+(20+i)*5,0+(20+j)*5,0)) )
+                kind=i*i+j*j < 20 and 'forest' or 'water'
+                self.tiles.append( tile(self, i,j, kind ) )
+
+                
+        print("AAAAAAAAAAAAAAAAAAAA", len(self.tiles))
                 
         self.entities.append(self.player)
         
