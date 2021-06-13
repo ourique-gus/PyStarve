@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 from main.components.collider import collider
+from main.components.worker import worker
 
 class player():
     def __init__(self,game,width,height,x0,y0):
@@ -15,9 +16,13 @@ class player():
         self.size=self.sprite.get_size()
         self.speed=5
         self.zorder=0
-        self.components={'collider':collider(self.game,self)}
-        
+        self.components={
+                        'collider':collider(self.game,self),
+                        'worker':worker(self.game,self)
+                        }
+                        
     def update(self):
+    
         dx=-self.game.controls.keys[pygame.K_a]+self.game.controls.keys[pygame.K_d]
         dy=-self.game.controls.keys[pygame.K_w]+self.game.controls.keys[pygame.K_s]
         
@@ -30,6 +35,10 @@ class player():
             self.y+=self.speed*dy
             
         self.components['collider'].get_collision()
+        
+        if self.game.controls.keys[pygame.K_SPACE]:
+            self.components['worker'].work_on_nearest_entity()
+                
         
     def draw(self):
         self.game.screen.screen.blit(self.sprite,

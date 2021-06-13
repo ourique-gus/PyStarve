@@ -11,6 +11,10 @@ class tile_manager():
             'water':{'colour':(0,0,150), 'collision':True},
             }
         self.tile_info={}
+        
+        self.tiles_to_draw_x=[-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7]
+        self.tiles_to_draw_y=[-4,-3,-2,-1,0,1,2,3,4]
+        self.tiles_to_draw=np.vstack(map(np.ravel,np.meshgrid(self.tiles_to_draw_x, self.tiles_to_draw_y))).T
             
     def start(self):
         self.tile_sprites={i:pygame.Surface((self.size,self.size)) for i in self.tile_dict}
@@ -27,4 +31,9 @@ class tile_manager():
             dx=tile.x-xy_tiles[:,0]
             dy=tile.y-xy_tiles[:,1]
             
-
+    def draw(self):
+        x,y=self.get_tile_coords(self.game.camera.x,self.game.camera.y)
+        for xy in self.tiles_to_draw:
+                obj=self.tile_info.get(xy[0]+x,{}).get(xy[1]+y,{}).get('obj')
+                obj.draw()
+                

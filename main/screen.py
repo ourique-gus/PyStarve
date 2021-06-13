@@ -14,8 +14,7 @@ class screen():
     def update(self):
         self.screen.fill((0,0,0))
         
-        for tile in self.game.tiles:
-            tile.draw()
+        self.game.tile_manager.draw()
         
         sorted_index=np.argsort([ent.zorder if hasattr(ent,"zorder") else -9999 for ent in self.game.entities])
         sorted_entities=[self.game.entities[index] for index in sorted_index]

@@ -16,7 +16,7 @@ class tile():
         
         if not self.x_id in self.game.tile_manager.tile_info:
             self.game.tile_manager.tile_info[self.x_id]={}
-        self.game.tile_manager.tile_info[self.x_id][self.y_id]={'kind':self.kind, 'collision':self.collision}
+        self.game.tile_manager.tile_info[self.x_id][self.y_id]={'kind':self.kind, 'collision':self.collision, 'obj':self}
         
     def draw(self):
         dx=self.x-self.game.camera.x

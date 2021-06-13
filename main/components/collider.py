@@ -5,7 +5,8 @@ class collider():
     def __init__(self,game, parent):
         self.game=game
         self.parent=parent
-        self.tile_size=self.game.tile_manager.size
+        self.tile_scale=0.998
+        self.tile_size=self.tile_scale*self.game.tile_manager.size
             
     def get_collision(self):
         x_tile,y_tile=self.game.tile_manager.get_tile_coords(self.parent.x,self.parent.y)
@@ -23,7 +24,7 @@ class collider():
                 if dx < 0 and dy < 0:
                     if dx > dy:
                         sign=xl < xr and -1 or 1
-                        self.parent.x-=1.0001*dx*sign
+                        self.parent.x-=dx*sign
                     else:
                         sign=yt < yb and -1 or 1
-                        self.parent.y-=1.0001*dy*sign
+                        self.parent.y-=dy*sign
