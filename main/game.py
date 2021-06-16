@@ -9,6 +9,8 @@ from main.camera import camera
 from main.tile import tile
 from main.tile_manager import tile_manager
 from main.prefabs.evergreen import evergreen as prefabs_evergreen
+from main.prefabs.tomato import tomato as prefabs_tomato
+from main.hud import hud
 
 
 class game():
@@ -40,7 +42,8 @@ class game():
         
         self.controls=controls(self)
         self.player=player(self,20,20,50,50)
-        self.cycle=cycle(self,300)
+        self.cycle=cycle(self,60*60, 0.7)
+        self.hud=hud(self)
         
         
         self.camera=camera(self,0,0)
@@ -64,6 +67,8 @@ class game():
             x=r*np.cos(theta)
             y=r*np.sin(theta)
             self.entities.append(prefabs_evergreen(self,10,10, x,y))
+            
+        self.entities.append(prefabs_tomato(self,10,10, 150,150))
         
         self.lights.append(light(self,0,100,100,100))
         self.lights.append(light(self,700,500,100,100))

@@ -29,5 +29,7 @@ class screen():
                 ent.draw()
                 
         self.game.cycle.draw()
+        
+        self.game.hud.draw()
     
         pygame.display.flip()

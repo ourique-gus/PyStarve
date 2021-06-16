@@ -29,11 +29,9 @@ class workable():
         self.anim_frame=self.max_anim_frame
         self.x0=self.parent.x
         self.y0=self.parent.y
-        print("TOMATE")
         
     def update(self):
         if self.anim_frame > 1:
-            print("here")
             self.anim_frame-=1
             self.parent.x=self.x0+np.random.uniform(-5,5)
             self.parent.y=self.y0+np.random.uniform(-5,5)
