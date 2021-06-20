@@ -15,11 +15,11 @@ class cycle():
         self.sprite=pygame.Surface((self.game.screen.width, self.game.screen.height), pygame.SRCALPHA)
         
         self.alpha_time=np.array([
-                    [0, 0],
-                    [self.day_night_ratio-self.transition_ratio/2, 0],
+                    [0, 0.5],#0],
+                    [self.day_night_ratio-self.transition_ratio/2, 1],#0],
                     [self.day_night_ratio+self.transition_ratio/2, 1],
                     [1-self.transition_ratio,1],
-                    [1,0]
+                    [1,1]#0]
                     ])
         print(self.alpha_time)
         

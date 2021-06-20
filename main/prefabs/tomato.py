@@ -11,7 +11,7 @@ class tomato():
         self.y=y0
         self.is_updating=True
         self.is_hidden=False
-        self.sprite=pygame.image.load("sprite/prefabs/tomato.png")
+        self.sprite=pygame.transform.scale(pygame.image.load("sprite/prefabs/tomato.png"), (35,35))
         self.size=self.sprite.get_size()
         self.zorder=-1
         self.components={'edible':edible(self.game,self, 50,10,0)}

@@ -18,4 +18,3 @@ class health():
     def update(self):
         if 'hunger' in self.parent.components and self.parent.components['hunger'].current <= 0:
             self.do_delta(-0.1)
-        print(self.current)

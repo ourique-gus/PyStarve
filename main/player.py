@@ -5,6 +5,7 @@ from main.components.worker import worker
 from main.components.hunger import hunger
 from main.components.health import health
 from main.components.eater import eater
+from main.components.toggler import toggler
 
 class player():
     def __init__(self,game,width,height,x0,y0):
@@ -25,6 +26,7 @@ class player():
                         'hunger':hunger(self.game,self),
                         'health':health(self.game,self),
                         'eater':eater(self.game,self),
+                        'toggler':toggler(self.game,self),
                         }
                         
     def update(self):
@@ -43,6 +45,7 @@ class player():
         self.components['collider'].get_collision()
         
         if self.game.controls.keys[pygame.K_SPACE]:
+            self.components['toggler'].toggle_nearest_entity()
             self.components['eater'].eat_nearest_entity()
             self.components['worker'].work_on_nearest_entity()
                 

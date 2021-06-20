@@ -10,6 +10,7 @@ from main.tile import tile
 from main.tile_manager import tile_manager
 from main.prefabs.evergreen import evergreen as prefabs_evergreen
 from main.prefabs.tomato import tomato as prefabs_tomato
+from main.prefabs.campfire import campfire as prefabs_campfire
 from main.hud import hud
 
 
@@ -69,6 +70,8 @@ class game():
             self.entities.append(prefabs_evergreen(self,10,10, x,y))
             
         self.entities.append(prefabs_tomato(self,10,10, 150,150))
+        self.entities.append(prefabs_campfire(self,10,10, -150,150))
+        self.entities.append(prefabs_campfire(self,10,10, -150,100))
         
         self.lights.append(light(self,0,100,100,100))
         self.lights.append(light(self,700,500,100,100))
@@ -85,7 +88,8 @@ class game():
             self.non_removed_entities=[]
             for ent in self.entities:
                 if not (hasattr(ent,'remove') and ent.remove==True):
-                    self.non_removed_entities.append(ent)
+                    if not hasattr(ent,'parent') or not (hasattr(ent.parent,'remove') and ent.parent.remove==True):
+                        self.non_removed_entities.append(ent)
                 else:
                     if hasattr(ent,'on_remove'):
                         ent.on_remove()

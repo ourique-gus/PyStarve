@@ -26,10 +26,10 @@ class hud():
         hunger_meter = self.game.player.components['hunger'].current/self.game.player.components['hunger'].max
         pygame.draw.rect(self.hunger_bar, (255, 0,0), (10,90-80*hunger_meter, 30,80*hunger_meter) )
         
-        self.game.screen.screen.blit(self.hunger_bar, (self.w-150, 50) )
+        self.game.screen.screen.blit(self.hunger_bar, (50, 50) )
 
         health_meter = self.game.player.components['health'].current/self.game.player.components['health'].max
         pygame.draw.rect(self.health_bar, (230, 0,126), (10,90-80*health_meter, 30,80*health_meter) )
 
-        self.game.screen.screen.blit(self.health_bar, (self.w-75, 50) )
+        self.game.screen.screen.blit(self.health_bar, (125, 50) )
         
